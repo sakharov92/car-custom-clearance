@@ -19,7 +19,8 @@ class InputSection extends React.Component {
         return years;
     }
     wheelTypeHandler = ({ target: { value } }) => {
-        this.props.EDIT_WHEEL_TYPE(value)
+        this.props.EDIT_WHEEL_TYPE(value);
+        this.props.EDIT_FUEL_TYPE("gasoline")
     }
     fuelTypeHandler = ({ target: { value } }) => {
         this.props.EDIT_FUEL_TYPE(value)
@@ -45,6 +46,10 @@ class InputSection extends React.Component {
     }
 
 
+
+
+
+
     render() {
         const { wheelType, fuelType, price, productionYear, engineСapacity, batteryСapacity, originCountry, fullWeight } = this.props.state;
         return (
@@ -63,7 +68,7 @@ class InputSection extends React.Component {
                     <select name="fuelTypeSelect" value={fuelType} onChange={this.fuelTypeHandler}>
                         <option value="gasoline">Бензин</option>
                         <option value="diesel">Дизель</option>
-                        <option value="hybrid" className={(wheelType === "truck" ||wheelType === "bus") ? "hide" : ""}> Гибрид</option>
+                        <option value="hybrid" className={(wheelType === "truck" || wheelType === "bus") ? "hide" : ""}> Гибрид</option>
                         <option value="electro" className={(wheelType === "truck" || wheelType === "bus") ? "hide" : ""}>Электро</option>
                     </select>
                 </div>
@@ -93,9 +98,10 @@ class InputSection extends React.Component {
 
                 <h3>Страна происхождения</h3>
                 <select name="originCountrySelect" value={originCountry} onChange={this.originCountryHandler}>
-                    <option value="ETA">ЕАСТ</option>
+                    <option value="EAUT">ЕАСТ</option>
                     <option value="EU">ЕС</option>
                     <option value="Canada">Канада</option>
+                    <option value="other">Другая</option>
                 </select>
 
                 <div className={wheelType === "truck" ? "carrying" : "carrying hide"}>

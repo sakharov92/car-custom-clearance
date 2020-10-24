@@ -16,7 +16,7 @@ const initialState = {
         engineСapacity: 2000,
         batteryСapacity: 30,
         originCountry: "EU",
-        carrying: "5-"
+        fullWeight: "5-"
     }
 }
 
