@@ -4,7 +4,7 @@ import "./InputSection.css";
 
 import {
     EDIT_WHEEL_TYPE, EDIT_FUEL_TYPE, EDIT_PRICE, EDIT_PRODUCTION_YEAR, EDIT_ENGINE_CAPACITY,
-    EDIT_BATTERY_CAPACITY, EDIT_ORIGIN_COUNTRY, EDIT_FULL_WEIGHT
+    EDIT_BATTERY_CAPACITY, EDIT_ORIGIN_COUNTRY, EDIT_FULL_WEIGHT, IS_RESULT_SHOWN
 } from "../../Store/actions/actions";
 
 
@@ -18,33 +18,52 @@ class InputSection extends React.Component {
         }
         return years;
     }
+
     wheelTypeHandler = ({ target: { value } }) => {
+        this.props.IS_RESULT_SHOWN(false);
         this.props.EDIT_WHEEL_TYPE(value);
         this.props.EDIT_FUEL_TYPE("gasoline")
     }
     fuelTypeHandler = ({ target: { value } }) => {
-        this.props.EDIT_FUEL_TYPE(value)
+        this.props.IS_RESULT_SHOWN(false);
+        this.props.EDIT_FUEL_TYPE(value);
     }
 
     priceHandler = ({ target: { value } }) => {
-        this.props.EDIT_PRICE(value)
+        this.props.IS_RESULT_SHOWN(false);
+        this.props.EDIT_PRICE(value);
+
     }
     productionYearHandler = ({ target: { value } }) => {
-        this.props.EDIT_PRODUCTION_YEAR(value)
+        this.props.IS_RESULT_SHOWN(false);
+        this.props.EDIT_PRODUCTION_YEAR(value);
+
     }
     engineСapacityHandler = ({ target: { value } }) => {
-        this.props.EDIT_ENGINE_CAPACITY(value)
+        this.props.IS_RESULT_SHOWN(false);
+        this.props.EDIT_ENGINE_CAPACITY(value);
+
     }
     batteryСapacityHandler = ({ target: { value } }) => {
-        this.props.EDIT_BATTERY_CAPACITY(value)
+        this.props.IS_RESULT_SHOWN(false);
+        this.props.EDIT_BATTERY_CAPACITY(value);
+
     }
     originCountryHandler = ({ target: { value } }) => {
-        this.props.EDIT_ORIGIN_COUNTRY(value)
+        this.props.IS_RESULT_SHOWN(false);
+        this.props.EDIT_ORIGIN_COUNTRY(value);
+
     }
     fullWeightHandler = ({ target: { value } }) => {
-        this.props.EDIT_FULL_WEIGHT(value)
+        this.props.IS_RESULT_SHOWN(false);
+        this.props.EDIT_FULL_WEIGHT(value);
+
     }
 
+    calculate = (e) => {
+        e.preventDefault();
+        this.props.IS_RESULT_SHOWN(true);
+    }
 
 
 
@@ -112,7 +131,7 @@ class InputSection extends React.Component {
                         <option value="20+">более 20 тонн</option>
                     </select>
                 </div>
-
+                <input type="submit" value="Расчитать" onClick={this.calculate} />
             </form>
         )
     }
@@ -120,5 +139,5 @@ class InputSection extends React.Component {
 
 export default connect((state) => ({ state: state.editData }), {
     EDIT_WHEEL_TYPE, EDIT_FUEL_TYPE, EDIT_PRICE, EDIT_PRODUCTION_YEAR, EDIT_ENGINE_CAPACITY,
-    EDIT_BATTERY_CAPACITY, EDIT_ORIGIN_COUNTRY, EDIT_FULL_WEIGHT
+    EDIT_BATTERY_CAPACITY, EDIT_ORIGIN_COUNTRY, EDIT_FULL_WEIGHT, IS_RESULT_SHOWN
 })(InputSection);

@@ -17,7 +17,8 @@ const initialState = {
         batteryСapacity: 30,
         originCountry: "EU",
         fullWeight: "5-"
-    }
+    },
+    isResultShown: false
 }
 
 

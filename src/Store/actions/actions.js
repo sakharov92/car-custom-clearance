@@ -1,7 +1,15 @@
 
 
 
-import { WHEEL_TYPE, FUEL_TYPE, PRICE, PRODUCTION_YEAR, ENGINE_CAPACITY, BATTERY_CAPACITY, ORIGIN_COUNTRY, FULL_WEIGHT } from '../constants';
+import { WHEEL_TYPE, FUEL_TYPE, PRICE, PRODUCTION_YEAR, ENGINE_CAPACITY, BATTERY_CAPACITY, ORIGIN_COUNTRY, FULL_WEIGHT, CALCULATE} from '../constants';
+
+export const IS_RESULT_SHOWN = (value) => {
+    return {
+        type: CALCULATE,
+        value: value
+    }
+}
+
 export const EDIT_WHEEL_TYPE = (value) => {
     return {
         type: WHEEL_TYPE,

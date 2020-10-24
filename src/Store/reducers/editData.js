@@ -1,4 +1,4 @@
-import { WHEEL_TYPE, FUEL_TYPE, PRICE, PRODUCTION_YEAR, ENGINE_CAPACITY, BATTERY_CAPACITY, ORIGIN_COUNTRY, FULL_WEIGHT } from '../constants';
+import { WHEEL_TYPE, FUEL_TYPE, PRICE, PRODUCTION_YEAR, ENGINE_CAPACITY, BATTERY_CAPACITY, ORIGIN_COUNTRY, FULL_WEIGHT} from '../constants';
 
 const editData = (state = {}, { type, value }) => {
     switch (type) {

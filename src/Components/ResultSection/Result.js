@@ -4,36 +4,33 @@ import "./Result.css";
 
 
 
-const Result = ({ batteryСapacity, fullWeight, engineСapacity, fuelType, originCountry, price, productionYear, wheelType }) => {
-
-
+const Result = ({ batteryСapacity, fullWeight, engineСapacity, fuelType, originCountry, price, productionYear, wheelType, isResultShown }) => {
 
     let dutyRate = 0.1;
     let excise = 0;
-    let numOfYears = (new Date).getFullYear() - productionYear;
+    let numOfYears = (new Date()).getFullYear() - productionYear;
     if (productionYear === "2005 и старше") { numOfYears = 15 }
     if (numOfYears === 0) { numOfYears = 1 }
     let NDSRate = 0.2;
     let isHybrid = false;
 
 
+    if (isResultShown) {
+        switch (originCountry) {
+            case "EU":
+                dutyRate = 0.055;
+                break;
+            case "Canada":
+            case "EAUT":
+                dutyRate = 0;
+                break;
+            case "other":
+                console.log("123")
+                dutyRate = 0.1;
+                break;
 
-
-
-    switch (originCountry) {
-        case "EU":
-            dutyRate = 0.055;
-            break;
-        case "Canada":
-        case "EAUT":
-            dutyRate = 0;
-            break;
-        case "other":
-            console.log("123")
-            dutyRate = 0.1;
-            break;
-
-        default: break;
+            default: break;
+        }
     }
     switch (wheelType) {
         case "passanger":
@@ -85,14 +82,21 @@ const Result = ({ batteryСapacity, fullWeight, engineСapacity, fuelType, origi
 
     return (
         <>
-            <div>Стоимость авто за границе: {price} EUR</div>
-            <div>`Пошлина: {duty} EUR`</div>
-            <div>`Акциз: {isHybrid ? "100" : excise} EUR`</div>
-            <div>`НДС: {NDS}EUR`</div>
-            <div>`Таможенных платижей: {fullFee} EUR`</div>
-            <div>`Стоимсоть авто после растаможки: {+price + fullFee} EUR`</div>
+            <div>Стоимость авто за границе: {isResultShown ? price : ""} EUR</div>
+            <div>Пошлина: {isResultShown ? duty : ""} EUR</div>
+            <div>Акциз: {isResultShown ? (isHybrid ? "100" : excise) : ""} EUR</div>
+            <div>НДС: {isResultShown ? NDS : ""}EUR</div>
+            <div>Таможенных платижей: {isResultShown ? fullFee : ""} EUR</div>
+            <div>Стоимсоть авто после растаможки: {isResultShown ? (+price + fullFee) : ""} EUR</div>
         </>
     )
 }
 
-export default connect((state) => state.editData)(Result);
+export default connect((state) => {
+    let propState = Object.assign({}, state.editData);
+    propState.isResultShown = state.isResultShown;
+    return propState;
+})(Result);
+
+
+
