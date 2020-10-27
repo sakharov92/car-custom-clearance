@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component, useEffect, useState } from "react";
 import { connect } from "react-redux";
 import "./Result.css";
 
@@ -13,7 +13,23 @@ const Result = ({ batteryСapacity, fullWeight, engineСapacity, fuelType, origi
     if (numOfYears === 0) { numOfYears = 1 }
     let NDSRate = 0.2;
     let isHybrid = false;
+    const govExchangeCourse = "https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?json";
 
+
+
+
+
+    const [eurRate, setEurRate] = useState(33.5)
+
+    useEffect(() => {
+        fetch(govExchangeCourse)
+            .then(response => response.json())
+            .then(response => response.map((e) => {
+                if (e.cc == "EUR") {
+                    setEurRate(e.rate.toFixed(2))
+                }
+            }));
+    }, []);
 
     if (isResultShown) {
         switch (originCountry) {
@@ -80,14 +96,32 @@ const Result = ({ batteryСapacity, fullWeight, engineСapacity, fuelType, origi
 
 
 
+    const pensFee = (fullFee, price) => {
+        let fullPrice = (+fullFee + +price) * eurRate;
+        console.log(fullPrice)
+        if (fullPrice < 2118 * 165) {
+            return (fullPrice * 0.03).toFixed();
+        } else {
+            if (fullPrice > 2118 * 290) {
+                return (fullPrice * 0.05).toFixed();
+            } else {
+                return (fullPrice * 0.04).toFixed();
+            }
+        }
+    }
+
+
     return (
         <>
+            {eurRate}
             <div>Стоимость авто за границе: {isResultShown ? price : ""} EUR</div>
             <div>Пошлина: {isResultShown ? duty : ""} EUR</div>
             <div>Акциз: {isResultShown ? (isHybrid ? "100" : excise) : ""} EUR</div>
             <div>НДС: {isResultShown ? NDS : ""}EUR</div>
             <div>Таможенных платижей: {isResultShown ? fullFee : ""} EUR</div>
             <div>Стоимсоть авто после растаможки: {isResultShown ? (+price + fullFee) : ""} EUR</div>
+            <div> Налог в пенсионный фонд при первой регистрации: {isResultShown ? pensFee(fullFee, price) : ""} Грн</div>
+
         </>
     )
 }
