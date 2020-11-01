@@ -131,7 +131,7 @@ class InputSection extends React.Component {
                         <option value="20+">более 20 тонн</option>
                     </select>
                 </div>
-                <input type="submit" value="Расчитать" onClick={this.calculate} />
+                <input className="calculateButton" type="submit" value="Расчитать" onClick={this.calculate} />
             </form>
         )
     }

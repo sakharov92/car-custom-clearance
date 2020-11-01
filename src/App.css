@@ -1,0 +1,35 @@
+main {
+    position: relative;
+    display: flex;
+    margin: 0 auto;
+    padding-top: 50px;
+    width: 100%;
+    max-width: 1200px;
+    z-index: 1;
+    box-sizing: border-box;
+    padding: 0 30px;
+}
+
+.App {
+    padding: 0 auto;
+    background: url("./img/Rastamozhka-avtomobilya-v-Ukraine-v-2017-godu.jpg");
+    background-size: cover;
+    height: 100vh;
+    background-position: center;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.App::after {
+    content: "";
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    position: absolute;
+    top: 0;
+}

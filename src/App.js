@@ -12,8 +12,10 @@ function App() {
     <Provider store={store}>
       <div className="App">
         <Title />
-        <InputSection />
-        <Result />
+        <main>
+          <InputSection />
+          <Result />
+        </main>
         <Footer />
       </div>
     </Provider>

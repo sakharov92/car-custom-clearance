@@ -112,17 +112,16 @@ const Result = ({ batteryСapacity, fullWeight, engineСapacity, fuelType, origi
 
 
     return (
-        <>
-            {eurRate}
-            <div>Стоимость авто за границе: {isResultShown ? price : ""} EUR</div>
-            <div>Пошлина: {isResultShown ? duty : ""} EUR</div>
-            <div>Акциз: {isResultShown ? (isHybrid ? "100" : excise) : ""} EUR</div>
-            <div>НДС: {isResultShown ? NDS : ""}EUR</div>
-            <div>Таможенных платижей: {isResultShown ? fullFee : ""} EUR</div>
-            <div>Стоимсоть авто после растаможки: {isResultShown ? (+price + fullFee) : ""} EUR</div>
-            <div> Налог в пенсионный фонд при первой регистрации: {isResultShown ? pensFee(fullFee, price) : ""} Грн</div>
+        <div className="result">
+            <div>Стоимость авто за границе: {isResultShown ? price : "0"} EUR</div>
+            <div>Пошлина: {isResultShown ? duty : "0"} EUR</div>
+            <div>Акциз: {isResultShown ? (isHybrid ? "100" : excise) : "0"} EUR</div>
+            <div>НДС: {isResultShown ? NDS : "0"} EUR</div>
+            <div>Таможенных платижей: {isResultShown ? fullFee : "0"} EUR</div>
+            <div>Стоимсоть авто после растаможки: {isResultShown ? (+price + fullFee) : "0"} EUR</div>
+            <div> Налог в пенсионный фонд при первой регистрации: {isResultShown ? pensFee(fullFee, price) : "0"} Грн</div>
 
-        </>
+        </div>
     )
 }
 
