@@ -10,3 +10,10 @@
  .result div {
      margin: 10px 0;
  }
+
+ @media (max-width: 767px) {
+   .result{
+       font-size: 14px;
+       max-width: 100%;
+   }
+ }

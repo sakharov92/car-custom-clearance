@@ -33,3 +33,13 @@ main {
     position: absolute;
     top: 0;
 }
+
+@media (max-width: 767px) {
+    main {
+        display: flex;
+        flex-direction: column;
+    }
+    .App {
+        height: fit-content
+    }
+}

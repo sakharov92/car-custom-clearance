@@ -3,3 +3,9 @@ header {
     font-size: 24px;
     z-index: 1;
 }
+
+@media (max-width: 767px) {
+    header {
+        font-size: 18px;
+    }
+}
